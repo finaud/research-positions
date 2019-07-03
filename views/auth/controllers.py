@@ -7,7 +7,7 @@ auth = Blueprint('auth', __name__)
 def student_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if 'student_token' not in session:
+        if 'token' not in session or session['user_type'] != 'student':
             return "student login required"
             # return redirect(url_for('auth.login'))
         return view(**kwargs)
@@ -17,7 +17,7 @@ def student_required(view):
 def prof_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if 'prof_token' not in session:
+        if 'token' not in session or session['user_type'] != 'prof':
             return "prof login required"
             # return redirect(url_for('auth.login'))
         return view(**kwargs)

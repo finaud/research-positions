@@ -1,4 +1,56 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h1>Index</h1>
+<nav>
+  <div class="nav-wrapper container red lighten-2">
+    <a id="logo-container" href="#" class="brand-logo">Logo</a>
+    <ul class="right hide-on-med-and-down">
+      {% if not session['token'] %}
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      {% else %}
+        <li><a href="#">Logout</a></li>
+      {% endif %}
+    </ul>
+
+    <ul id="nav-mobile" class="sidenav">
+      {% if not session['token'] %}
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      {% else %}
+        <li><a href="#">Logout</a></li>
+      {% endif %}
+    </ul>
+    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center white-text">Research Finder</h1>
+      <div class="row center">
+        <h5 class="header col s12 white-text">A website to find research positions</h5>
+      </div>
+      <div class="row center">
+        <a href="#" id="download-button" class="btn-large waves-effect waves-light red lighten-2">Get Started</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+  <div class="parallax"><img src="{{ url_for('static', filename='img/background1.jpg') }}" alt="Unsplashed background img 1"></div>
+</div>
+<div class="container">
+  <div class="section">
+
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>About</h4>
+        <p class="left-align light">A simple website for students to find research positions, and for professors to find capable students.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
