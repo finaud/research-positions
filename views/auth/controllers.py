@@ -24,6 +24,6 @@ def prof_required(view):
     return wrapped_view
 
 
-@auth.route("/")
+@auth.route('/')
 def index():
     return "auth view"
