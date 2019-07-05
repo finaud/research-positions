@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active"  href="#student">Student</a></li>
+        <li class="tab col s6"><a href="#prof">Professor</a></li>
+      </ul>
+    </div>
+    <div id="student" class="col s12">Student Form</div>
+    <div id="prof" class="col s12">Prof Form</div>
+  </div>
+</div>
+{% endblock %}
