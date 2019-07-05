@@ -1,8 +1,8 @@
-from flask import Flask, render_template
-from views.main.controllers import main
-from views.auth.controllers import auth
-from views.student.controllers import student
-from views.prof.controllers import prof
+from flask import Flask
+from views.main import main
+from views.auth import auth
+from views.student import student
+from views.prof import prof
 
 import config
 
