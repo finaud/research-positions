@@ -1,5 +1,6 @@
 venv/
 config.py
+firebase_admin_key.json
 
 *.pyc
 __pycache__/
