@@ -25,6 +25,7 @@ def register_prof():
 
 @auth.route('/login', methods=['GET'])
 def login():
+    session.permanent = True
     return render_template('auth/login.html')
 
 

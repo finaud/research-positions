@@ -6,9 +6,11 @@ from views.prof import prof
 
 import config
 
+from datetime import timedelta
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config.SECRET_KEY
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=59)
 
 app.register_blueprint(main, url_prefix='/')
 app.register_blueprint(auth, url_prefix='/auth')
