@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, session, redirect, url_for
 import functools
+
+import firebase_functions as firebase
 
 prof = Blueprint('prof', __name__)
 
@@ -7,9 +9,8 @@ prof = Blueprint('prof', __name__)
 def prof_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if 'token' not in session or session['user_type'] != 'prof':
-            return "prof login required"
-            # return redirect(url_for('auth.login'))
+        if 'token' not in session or not firebase.verify_token(session['token']) or session['user_type'] != 'prof':
+            return redirect(url_for('auth.login'))
         return view(**kwargs)
     return wrapped_view
 
@@ -18,3 +19,11 @@ def prof_required(view):
 @prof_required
 def index():
     return "prof view"
+
+
+@prof.route('/home', methods=['GET'])
+@prof_required
+def home():
+    data = {}  # retreive info
+    return render_template('prof/home.html', data=data)
+
