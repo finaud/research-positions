@@ -10,22 +10,19 @@ def index():
     return "auth view"
 
 
-@auth.route('/register', methods=['GET'])
+@auth.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        user_type = request.form['user_type']
+        if user_type == 'student':
+            pass  # create student
+        elif user_type == 'prof':
+            pass  #create prof
+        
     return render_template('auth/register.html')
 
 
-@auth.route('/register_student', methods=['POST'])
-def register_student():
-    pass
-
-
-@auth.route('/register_prof', methods=['POST'])
-def register_prof():
-    pass
-
-
-@auth.route('/login', methods=['GET'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email, password, user_type = request.form['email'], request.form['password'], request.form['user_type']
@@ -39,6 +36,7 @@ def login():
                 session['user_type'], session['token'] = 'prof', response['token']
                 # retrieve prof info
                 return render_template('prof/home.html')  # pass in data
+
     return render_template('auth/login.html')
 
 
