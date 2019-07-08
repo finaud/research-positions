@@ -24,7 +24,15 @@ def verify_credentials(email: str, password: str) -> dict:
         return {'status': 'success', 'msg': 'UNKNOWN_ERROR'}
 
 
-def verify_token(token: str) -> dict:
+def verify_token(token: str) -> bool:
+    try:
+        auth.verify_id_token(token)
+        return True
+    except ValueError:
+        return False
+
+
+def decode_token(token: str) -> dict:
     try:
         response = auth.verify_id_token(token)
         return {'status': 'success', 'uid': response['uid']}

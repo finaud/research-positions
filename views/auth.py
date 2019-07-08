@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, session, request
+
+import firebase_functions as firebase
 
 auth = Blueprint('auth', __name__)
 
@@ -25,18 +27,19 @@ def register_prof():
 
 @auth.route('/login', methods=['GET'])
 def login():
-    session.permanent = True
+    if request.method == 'POST':
+        email, password, user_type = request.form['email'], request.form['password'], request.form['user_type']
+        response = firebase.verify_credentials(email, password)
+        if response['status'] == 'success':
+            if user_type == 'student':
+                session['user_type'], session['token'] = 'student', response['token']
+                # retrieve student info
+                return render_template('student/home.html')  # pass in data
+            elif user_type == 'prof':
+                session['user_type'], session['token'] = 'prof', response['token']
+                # retrieve prof info
+                return render_template('prof/home.html')  # pass in data
     return render_template('auth/login.html')
-
-
-@auth.route('/login_student', methods=['POST'])
-def login_student():
-    pass
-
-
-@auth.route('/login_prof', methods=['POST'])
-def login_prof():
-    pass
 
 
 @auth.route('/logout', methods=['GET'])
