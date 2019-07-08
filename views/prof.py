@@ -24,6 +24,6 @@ def index():
 @prof.route('/home', methods=['GET'])
 @prof_required
 def home():
-    data = {}  # retreive info
+    data = {}  # retrieve info
     return render_template('prof/home.html', data=data)
 

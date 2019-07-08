@@ -24,5 +24,5 @@ def index():
 @student.route('/home', methods=['GET'])
 @student_required
 def home():
-    data = {}  # retreive info
+    data = {}  # retrieve info
     return render_template('student/home.html', data=data)
