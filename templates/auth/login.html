@@ -5,17 +5,48 @@
   <div class="row">
     <div class="col s6 offset-s3">
       <div class="card">
-
-        <ul class="tabs">
-          <li class="tab col s6"><a class="active" href="#student">Student</a></li>
-          <li class="tab col s6"><a href="#prof">Professor</a></li>
-        </ul>
-
-        <div id="student" class="col s12">Student Form</div>
-        <div id="prof" class="col s12">Prof Form</div>
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" href="#student">Student</a></li>
+            <li class="tab"><a href="#prof">Professor</a></li>
+          </ul>
+        </div>
+        <div class="card-content">
+          {% set types = ['student', 'prof'] %}
+          {% for type in types %}
+          <div id="{{ type }}">
+            <div class="row"></div>
+            <form action="{{ url_for('auth.login') }}" method="post">
+              <input type="hidden" name="user_type" value="{{ type }}">
+              <div class="row">
+                <div class="input-field col s8 offset-s2">
+                  <input name="email" type="email">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s8 offset-s2">
+                  <input name="password" type="password">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s8 offset-s2">
+                  <button class="btn waves-effect waves-light" type="submit">Login
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-
   </div>
+
+</div>
+
+</div>
 </div>
 {% endblock %}

@@ -19,9 +19,9 @@ def verify_credentials(email: str, password: str) -> dict:
     if 'localId' in response:
         return {'status': 'success', 'uid': response['localId'], 'token': response['idToken']}
     elif 'error' in response:
-        return {'status': 'success', 'msg': response['error']['message']}
+        return {'status': 'error', 'msg': response['error']['message']}
     else:
-        return {'status': 'success', 'msg': 'UNKNOWN_ERROR'}
+        return {'status': 'error', 'msg': 'UNKNOWN_ERROR'}
 
 
 def verify_token(token: str) -> bool:
