@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for
+from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 
 import firebase_functions as firebase
 
@@ -40,6 +40,8 @@ def login():
                 session['user_type'], session['token'] = 'prof', response['token']
                 # retrieve prof info
                 return redirect(url_for('prof.home'))
+        else:
+            flash(response['msg'], 'red')
 
     return render_template('auth/login.html')
 
