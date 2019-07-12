@@ -26,3 +26,10 @@ def index():
 def home():
     data = {}  # retrieve info
     return render_template('student/home.html', data=data)
+
+
+@student.route('/profile', methods=['GET'])
+@student_required
+def profile():
+    data = {}  # retrieve info
+    return render_template('student/profile.html', data=data)
