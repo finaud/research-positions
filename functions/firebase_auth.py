@@ -1,5 +1,5 @@
 import firebase_admin
-from firebase_admin import credentials, auth, firestore
+from firebase_admin import credentials, auth
 
 import json
 import requests
@@ -8,8 +8,6 @@ from config import FIREBASE_API_KEY as API_KEY
 
 cred = credentials.Certificate("firebase_admin_key.json")
 firebase_admin.initialize_app(cred)
-
-db = firestore.client()
 
 
 def verify_credentials(email: str, password: str) -> dict:
