@@ -3,38 +3,105 @@
 {% block content %}
 <div class="container">
   <h2>First Last</h2>
-  <p>University</p>
 
-  <div class="divider"></div>
-  <div class="section">
-    <h4>About</h4>
-    <p>Stuff</p>
+  <div class="card">
+    <div class="card-content">
+      <h4>About</h4>
+      <p>Random stuff</p>
+    </div>
   </div>
 
-  <div class="divider"></div>
-  <div class="section">
-    <h4>Education</h4>
-    <div>
-      <div class="row">
-        <div class="col s6">
-          <h5>Random University</h5>
-          <em>Bachelor of Science</em>
+  <div class="card">
+    <div class="card-content">
+      <h4>Education</h4>
+      <div>
+        <div class="row">
+          <div class="col s6">
+            <h5>Random University 1</h5>
+            <em>Bachelor of Science</em>
+          </div>
+          <div class="col s6 right-align">
+            <br />
+            <p>2000 - 3000</p>
+          </div>
         </div>
-        <div class="col s6 right-align"><p>2000 - 3000</p></div>
+      </div>
+      <div class="divider"></div>
+      <div>
+        <div class="row">
+          <div class="col s6">
+            <h5>Random University 2</h5>
+            <em>Bachelor of Science</em>
+          </div>
+          <div class="col s6 right-align">
+            <br />
+            <p>2000 - 3000</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-  <div class="section">
-    <h4>Work Experience</h4>
-    <p>Stuff</p>
+  <div class="card">
+    <div class="card-content">
+      <h4>Work Experience</h4>
+      <div>
+        <div class="row">
+          <div class="col s6">
+            <h5>Random Company 1</h5>
+            <em>Software Engineer</em>
+            <p>random job description</p>
+          </div>
+          <div class="col s6 right-align">
+            <br />
+            <p>2000 - 3000</p>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div>
+        <div class="row">
+          <div class="col s6">
+            <h5>Random Company 2</h5>
+            <em>Solutions Architect</em>
+            <p>another random job description</p>
+          </div>
+          <div class="col s6 right-align">
+            <br />
+            <p>2000 - 3000</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="divider"></div>
-  <div class="section">
-    <h4>Courses</h4>
-    <p>Stuff</p>
+  <div class="card">
+    <div class="card-content">
+      <h4>Relevant Coursework</h4>
+      <table>
+        <thead>
+          <tr>
+              <th>Course Code</th>
+              <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>MAT137</td>
+            <td>Calculus</td>
+          </tr>
+          <tr>
+            <td>CSC148</td>
+            <td>Introduction to Computer Science</td>
+          </tr>
+          <tr>
+            <td>CSC165</td>
+            <td>Mathematical Expression and Reasoning for Computer Science</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 {% endblock %}
