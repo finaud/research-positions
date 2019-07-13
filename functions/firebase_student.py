@@ -33,3 +33,19 @@ def get_coursework(uid: str) -> [dict]:
         arr.append(doc.get().to_dict())
 
     return arr
+
+
+def add_education(uid: str, data: dict) -> None:
+    db.collection('users/{0}/education'.format(uid)).add(data)
+
+
+def add_experience(uid: str, data: dict) -> None:
+    db.collection('users/{0}/experience'.format(uid)).add(data)
+
+
+def set_coursework(uid: str, data: [dict]) -> None:
+    for doc in db.collection('users/{0}/coursework'.format(uid)).list_documents():
+        doc.delete()
+
+    for course in data:
+        db.collection('users/{0}/coursework'.format(uid)).add(course)
