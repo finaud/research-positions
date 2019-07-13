@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for
 import functools
 
-import firebase_functions as firebase
+from functions import firebase_auth as firebase
 
 student = Blueprint('student', __name__)
 

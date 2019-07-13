@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 
-import firebase_functions as firebase
+from functions import firebase_auth as firebase
 
 auth = Blueprint('auth', __name__)
 
