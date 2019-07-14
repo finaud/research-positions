@@ -19,6 +19,10 @@ def register():
             return redirect(url_for('prof.home'))
     elif request.method == 'POST':
         user_type = request.form['user_type']
+        if request.form['password'] != request.form['passwordConfirm']:
+            flash('PASSWORDS_DO_NOT_MATCH', 'red')
+            return render_template('auth/register.html')
+
         if user_type == 'student':
             pass  # create student
         elif user_type == 'prof':
