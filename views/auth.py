@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 
-from functions import firebase_auth as firebase
+from functions import firebase_auth as fb_auth
 
 auth = Blueprint('auth', __name__)
 
@@ -12,7 +12,7 @@ def index():
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
-    if 'token' in session and firebase.verify_token(session['token']):
+    if 'token' in session and fb_auth.verify_token(session['token']):
         if session['user_type'] == 'student':
             return redirect(url_for('student.home'))
         elif session['user_type'] == 'prof':
@@ -29,14 +29,14 @@ def register():
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    if 'token' in session and firebase.verify_token(session['token']):
+    if 'token' in session and fb_auth.verify_token(session['token']):
         if session['user_type'] == 'student':
             return redirect(url_for('student.home'))
         elif session['user_type'] == 'prof':
             return redirect(url_for('prof.home'))
     elif request.method == 'POST':
         email, password, user_type = request.form['email'], request.form['password'], request.form['user_type']
-        response = firebase.verify_credentials(email, password)
+        response = fb_auth.verify_credentials(email, password)
         if response['status'] == 'success':
             if user_type == 'student':
                 session['user_type'], session['token'] = 'student', response['token']

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for
 import functools
 
-from functions import firebase_auth as firebase
+from functions import firebase_auth as fb_auth
 
 prof = Blueprint('prof', __name__)
 
@@ -9,7 +9,7 @@ prof = Blueprint('prof', __name__)
 def prof_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if 'token' not in session or not firebase.verify_token(session['token']) or session['user_type'] != 'prof':
+        if 'token' not in session or not fb_auth.verify_token(session['token']) or session['user_type'] != 'prof':
             return redirect(url_for('auth.login'))
         return view(**kwargs)
     return wrapped_view
