@@ -49,4 +49,4 @@ def login():
 @auth.route('/logout', methods=['GET'])
 def logout():
     session.clear()
-    return render_template('index.html')
+    return render_template('main/index.html')

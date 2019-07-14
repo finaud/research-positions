@@ -1,13 +1,9 @@
-import firebase_admin
-from firebase_admin import credentials, firestore
-
-cred = credentials.Certificate("firebase_admin_key.json")
-firebase_admin.initialize_app(cred)
+from firebase_admin import firestore
 
 db = firestore.client()
 
 
-def get_name(uid: str) -> dict:
+def get_info(uid: str) -> dict:
     return db.document('users/{0}'.format(uid)).get().to_dict()
 
 
