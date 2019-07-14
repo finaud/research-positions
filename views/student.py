@@ -38,6 +38,6 @@ def profile():
         'education': firebase_student.get_education(uid),
         'experience': firebase_student.get_experience(uid),
         'coursework': firebase_student.get_coursework(uid)
-    }  # retrieve info
+    }
 
     return render_template('student/profile.html', data=data)

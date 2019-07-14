@@ -13,7 +13,10 @@ def index():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if 'token' in session and firebase.verify_token(session['token']):
-        pass  # redirect to appropriate home page
+        if session['user_type'] == 'student':
+            return redirect(url_for('student.home'))
+        elif session['user_type'] == 'prof':
+            return redirect(url_for('prof.home'))
     elif request.method == 'POST':
         user_type = request.form['user_type']
         if user_type == 'student':
@@ -27,7 +30,10 @@ def register():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if 'token' in session and firebase.verify_token(session['token']):
-        pass  # redirect to appropriate home page
+        if session['user_type'] == 'student':
+            return redirect(url_for('student.home'))
+        elif session['user_type'] == 'prof':
+            return redirect(url_for('prof.home'))
     elif request.method == 'POST':
         email, password, user_type = request.form['email'], request.form['password'], request.form['user_type']
         response = firebase.verify_credentials(email, password)
