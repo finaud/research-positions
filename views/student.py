@@ -45,6 +45,16 @@ def edit_profile():
     return render_template('student/edit_profile.html', data=data)
 
 
+@student.route('/about', methods=['POST'])
+@student_required
+def about():
+    uid = fb_auth.decode_token(session['token'])['uid']
+    if request.method == 'POST':
+        about_data = request.form['about']
+        fb_student.set_about(uid, about_data)
+    return redirect(url_for('.edit_profile'))
+
+
 @student.route('/education', methods=['POST'])
 @student_required
 def education():

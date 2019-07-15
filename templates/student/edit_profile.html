@@ -7,6 +7,8 @@
     <div class="card-content">
       <h4>About</h4>
       <p>{{ data.about }}</p>
+      <div class="row"></div>
+      <a class="waves-effect waves-light btn modal-trigger" href="#edit_about">Edit</a>
     </div>
   </div>
 
@@ -77,6 +79,26 @@
       </table>
       <div class="row"></div>
       <a class="waves-effect waves-light btn modal-trigger" href="#add_coursework">Add Course</a>
+    </div>
+  </div>
+</div>
+
+<div id="edit_about" class="modal">
+  <div class="modal-content">
+    <div class="container">
+      <h4>About Me</h4>
+      <form action="{{ url_for('student.about') }}" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="about" type="text">
+            <label for="about">Short Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Update</button>
+          <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -155,7 +177,7 @@
         <div class="row">
           <div class="input-field col s12">
             <input name="code" type="text">
-            <label for="text">Course Code</label>
+            <label for="code">Course Code</label>
           </div>
         </div>
         <div class="row">
