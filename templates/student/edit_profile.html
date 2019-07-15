@@ -1,4 +1,107 @@
 {% extends "base.html" %}
 {% block title %} Edit Profile {% endblock %}
 {% block content %}
+<div class="container">
+  <h2>{{ data.first_name }} {{ data.last_name }}</h2>
+  <div class="card">
+    <div class="card-content">
+      <h4>About</h4>
+      <p>{{ data.about }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <h4>Education</h4>
+      <div>
+        {% for education in data.education %}
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col s6">
+            <h5>{{ education.name }}</h5>
+            <em>{{ education.degree }}</em>
+          </div>
+          <div class="col s6 right-align">
+            <br />
+            <p>{{ education.date }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <h4>Work Experience</h4>
+      <div>
+        {% for experience in data.experience %}
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col s6">
+            <h5>{{ experience.name }}</h5>
+            <em>{{ experience.position }}</em>
+            <p>{{ experience.detail }}</p>
+          </div>
+          <div class="col s6 right-align">
+            <br />
+            <p>{{ experience.date }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <h4>Relevant Coursework</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for course in data.coursework %}
+          <tr>
+            <td>{{ course.code }}</td>
+            <td>{{ course.name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="row"></div>
+      <a class="waves-effect waves-light btn modal-trigger" href="#add_coursework">Add Course</a>
+    </div>
+  </div>
+</div>
+
+<div id="add_coursework" class="modal">
+  <div class="modal-content">
+    <div class="container">
+      <h4>Add A Course</h4>
+      <form action="{{ url_for('student.coursework') }}" method="post">
+        <div class="row">
+          <div class="input-field">
+            <input name="code" type="text">
+            <label for="text">Course Code</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <input name="name" type="text">
+            <label for="name">Course Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Add Course</button>
+          <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

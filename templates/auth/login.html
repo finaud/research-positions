@@ -15,7 +15,6 @@
           {% set types = ['student', 'prof'] %}
           {% for type in types %}
           <div id="{{ type }}">
-            <div class="row"></div>
             <form action="{{ url_for('auth.login') }}" method="post">
               <input type="hidden" name="user_type" value="{{ type }}">
               <div class="row">

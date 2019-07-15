@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, request
 import functools
 
 import functions.firebase_auth as fb_auth
@@ -35,3 +35,25 @@ def profile():
     uid = fb_auth.decode_token(session['token'])['uid']
     data = fb_student.get_info(uid)
     return render_template('student/profile.html', data=data)
+
+
+@student.route('/edit_profile', methods=['GET'])
+@student_required
+def edit_profile():
+    uid = fb_auth.decode_token(session['token'])['uid']
+    data = fb_student.get_info(uid)
+    return render_template('student/edit_profile.html', data=data)
+
+
+@student.route('/coursework', methods=['POST'])
+@student_required
+def coursework():
+    uid = fb_auth.decode_token(session['token'])['uid']
+    if request.method == 'POST':
+        coursework_data = {
+            'code': request.form['code'],
+            'name': request.form['name']
+        }
+        fb_student.add_coursework(uid, coursework_data)
+    data = fb_student.get_info(uid)
+    return render_template('student/edit_profile.html', data=data)
