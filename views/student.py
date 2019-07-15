@@ -33,11 +33,6 @@ def home():
 @student_required
 def profile():
     uid = fb_auth.decode_token(session['token'])['uid']
-    data = {
-        'info': fb_student.get_info(uid),
-        'education': fb_student.get_education(uid),
-        'experience': fb_student.get_experience(uid),
-        'coursework': fb_student.get_coursework(uid)
-    }
-
+    data = fb_student.get_info(uid)
+    print(data)
     return render_template('student/profile.html', data=data)
