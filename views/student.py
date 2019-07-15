@@ -34,5 +34,4 @@ def home():
 def profile():
     uid = fb_auth.decode_token(session['token'])['uid']
     data = fb_student.get_info(uid)
-    print(data)
     return render_template('student/profile.html', data=data)
