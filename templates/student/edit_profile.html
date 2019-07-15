@@ -28,6 +28,7 @@
         </div>
         {% endfor %}
       </div>
+      <a class="waves-effect waves-light btn modal-trigger" href="#add_education">Add Education</a>
     </div>
   </div>
 
@@ -50,6 +51,7 @@
         </div>
         {% endfor %}
       </div>
+      <a class="waves-effect waves-light btn modal-trigger" href="#add_experience">Add Experience</a>
     </div>
   </div>
 
@@ -79,19 +81,85 @@
   </div>
 </div>
 
+<div id="add_education" class="modal">
+  <div class="modal-content">
+    <div class="container">
+      <h4>Add An Education</h4>
+      <form action="{{ url_for('student.education') }}" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="name" type="text">
+            <label for="name">University Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s7">
+            <input name="degree" type="text">
+            <label for="degree">Degree</label>
+          </div>
+          <div class="input-field col s5">
+            <input name="date" type="text">
+            <label for="date">Dates</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Add Education</button>
+          <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="add_experience" class="modal">
+  <div class="modal-content">
+    <div class="container">
+      <h4>Add An Experience</h4>
+      <form action="{{ url_for('student.experience') }}" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="name" type="text">
+            <label for="name">Company/University Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s7">
+            <input name="position" type="text">
+            <label for="position">Position/Role</label>
+          </div>
+          <div class="input-field col s5">
+            <input name="date" type="text">
+            <label for="date">Dates</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="detail" type="text">
+            <label for="detail">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="submit">Add Experience</button>
+          <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div id="add_coursework" class="modal">
   <div class="modal-content">
     <div class="container">
       <h4>Add A Course</h4>
       <form action="{{ url_for('student.coursework') }}" method="post">
         <div class="row">
-          <div class="input-field">
+          <div class="input-field col s12">
             <input name="code" type="text">
             <label for="text">Course Code</label>
           </div>
         </div>
         <div class="row">
-          <div class="input-field">
+          <div class="input-field col s12">
             <input name="name" type="text">
             <label for="name">Course Name</label>
           </div>
