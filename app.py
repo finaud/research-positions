@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from views.main import main
 from views.auth import auth
 from views.student import student
@@ -20,5 +20,4 @@ app.register_blueprint(prof, url_prefix='/prof')
 
 @app.errorhandler(404)
 def page_not_found(error):
-    # return render_template('page_not_found.html'), 404
-    return "missing page", 404
+    return render_template('main/error404.html'), 404
