@@ -22,11 +22,21 @@ def register():
         if request.form['password'] != request.form['passwordConfirm']:
             flash('PASSWORDS_DO_NOT_MATCH', 'red')
             return render_template('auth/register.html')
-
-        if user_type == 'student':
-            pass  # create student
-        elif user_type == 'prof':
-            pass  # create prof
+        else:
+            email, password = request.form['email'], request.form['password']
+            response = fb_auth.create_user(email, password)
+            if response['status'] == 'success':
+                response2 = fb_auth.verify_credentials(email, password)
+                if user_type == 'student':
+                    session['user_type'], session['token'] = 'student', response2['token']
+                    # retrieve student info
+                    return redirect(url_for('student.home'))
+                elif user_type == 'prof':
+                    session['user_type'], session['token'] = 'prof', response2['token']
+                    # retrieve prof info
+                    return redirect(url_for('prof.home'))
+            else:
+                flash(response['msg'], 'red')
 
     return render_template('auth/register.html')
 
